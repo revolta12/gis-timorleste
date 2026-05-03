@@ -26,15 +26,8 @@
 ### 2. [ ] Cek Masalah (mysqlcheck)
    - [ ] `mysqlcheck -u root -p --check --auto-repair gis_timorleste`
 
-### 3. [ ] Perbaiki Isu
-   - [ ] Fix zero-dates di users: UPDATE users SET created_at=NOW(), updated_at=NOW() WHERE created_at='0000-00-00 00:00:00'
-   - [ ] Bersihkan teks rusak di categories (slug/name)
-   - [ ] Gabung/hapus dump duplikat
-
 ### 4. [ ] Test
    - [ ] `cd backend && npm start`
-   - [ ] Cek http://localhost:5000/api/health
-   - [ ] Query test: SELECT COUNT(*) FROM ministries WHERE is_active=1
 
 ### 5. [ ] Maintenance
    - [ ] Tambah cronjob backup mingguan
