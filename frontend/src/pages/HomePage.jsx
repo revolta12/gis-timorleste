@@ -83,7 +83,10 @@ function HomePage() {
           </h1>
 
           <p className="text-xl text-gray-200 mb-8 drop-shadow max-w-2xl mx-auto">
-            Hetan lokál no informasaun ministériu sira ho interativu no fasil
+            Hetan lokál no informasaun ministériu sira ho interativu no fasil  
+          </p>
+          <p className="text-xl text-gray-200 mb-8 drop-shadow max-w-2xl mx-auto">
+            Sistema ne'e Ezame Tas Materia GIS
           </p>
 
           {/* Bendera Strip Bottom */}
