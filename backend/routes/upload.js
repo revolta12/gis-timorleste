@@ -1,11 +1,29 @@
 const express = require('express');
-const path = require('path');
-const fs = require('fs');
-const upload = require('../middleware/upload');
+const multer = require('multer');
+const cloudinary = require('cloudinary').v2;
+const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const { authenticate, authorize } = require('../middleware/auth');
 const { logActivity } = require('../utils/logger');
 
 const router = express.Router();
+
+// Konfigurasaun Cloudinary
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
+
+// Konfigurasaun storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'gis-timor',
+    allowed_formats: ['jpg', 'png', 'jpeg', 'gif', 'webp']
+  }
+});
+
+const upload = multer({ storage: storage });
 
 // POST /api/upload/image - Upload imajen ida
 router.post('/image', authenticate, authorize('administrator', 'editor'), upload.single('image'), (req, res) => {
@@ -17,12 +35,10 @@ router.post('/image', authenticate, authorize('administrator', 'editor'), upload
             });
         }
         
-        const fileUrl = `${req.protocol}://${req.get('host')}/uploads/${req.file.filename}`;
-        
         res.json({
             success: true,
             message: 'Upload susesu!',
-            data: { url: fileUrl, filename: req.file.filename }
+            data: { url: req.file.path, filename: req.file.filename }
         });
     } catch (error) {
         console.error('Upload error:', error);
@@ -41,7 +57,7 @@ router.post('/gallery', authenticate, authorize('administrator', 'editor'), uplo
         }
         
         const files = req.files.map(file => ({
-            url: `${req.protocol}://${req.get('host')}/uploads/${file.filename}`,
+            url: file.path,
             filename: file.filename
         }));
         
@@ -59,11 +75,7 @@ router.post('/gallery', authenticate, authorize('administrator', 'editor'), uplo
 // DELETE /api/upload/image/:filename - Hamos imajen
 router.delete('/image/:filename', authenticate, authorize('administrator'), async (req, res) => {
     try {
-        const filepath = path.join(__dirname, '..', 'uploads', req.params.filename);
-        
-        if (fs.existsSync(filepath)) {
-            fs.unlinkSync(filepath);
-        }
+        await cloudinary.uploader.destroy(`gis-timor/${req.params.filename}`);
         
         await logActivity({
             user_id: req.user.id,
