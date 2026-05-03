@@ -17,7 +17,6 @@ router.get('/', async (req, res) => {
         
         const settings = await SiteSetting.findAll();
         
-        // Default fallback
         const defaultSettings = {
             site_name: 'GIS Timor-Leste',
             site_description: 'Sistema Informasaun Lokalizasaun Ministériu',
@@ -32,7 +31,6 @@ router.get('/', async (req, res) => {
             profile_photo: ''
         };
         
-        // Override ho dadus database
         settings.forEach(setting => {
             defaultSettings[setting.setting_key] = setting.setting_value;
         });
@@ -108,17 +106,36 @@ router.delete('/:id', authenticate, authorize('administrator'), async (req, res)
     }
 });
 
-// PUT /api/settings - Atualiza settings (admin only)
+// PUT /api/settings - Atualiza settings (admin only) - FIXED VERSION
 router.put('/', authenticate, authorize('administrator'), async (req, res) => {
     try {
         const updates = req.body;
         
-        for (const [key, value] of Object.entries(updates)) {
-            await SiteSetting.upsert({
-                setting_key: key,
-                setting_value: value,
-                description: `Updated on ${new Date().toISOString()}`
+        console.log('📝 Received updates:', updates);
+        
+        if (!updates || Object.keys(updates).length === 0) {
+            return res.status(400).json({ 
+                success: false, 
+                message: 'La iha dadus atu atualiza.' 
             });
+        }
+        
+        for (const [key, value] of Object.entries(updates)) {
+            const [setting, created] = await SiteSetting.findOrCreate({
+                where: { setting_key: key },
+                defaults: {
+                    setting_key: key,
+                    setting_value: value,
+                    description: `Created on ${new Date().toISOString()}`
+                }
+            });
+            
+            if (!created) {
+                await setting.update({ 
+                    setting_value: value,
+                    description: `Updated on ${new Date().toISOString()}`
+                });
+            }
         }
         
         await logActivity({
@@ -132,7 +149,7 @@ router.put('/', authenticate, authorize('administrator'), async (req, res) => {
         
         res.json({ success: true, message: 'Konfigurasaun atualiza susesu!' });
     } catch (error) {
-        console.error('Erro settings PUT:', error);
+        console.error('❌ Erro settings PUT:', error);
         res.status(500).json({ success: false, message: error.message });
     }
 });
