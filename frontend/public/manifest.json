@@ -1,0 +1,25 @@
+{
+  "short_name": "GIS Timor-Leste",
+  "name": "GIS Timor-Leste - Sistema Informasaun Lokalizasaun",
+  "icons": [
+    {
+      "src": "logo timor-leste.webp",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/webp"
+    },
+    {
+      "src": "logo timor-leste.webp",
+      "type": "image/webp",
+      "sizes": "192x192"
+    },
+    {
+      "src": "logo timor-leste.webp",
+      "type": "image/webp",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#dc241f",
+  "background_color": "#1a1a1a"
+}
