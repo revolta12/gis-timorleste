@@ -39,7 +39,7 @@ const Footer = () => {
               <div className="mt-4 inline-flex items-center gap-2 px-3 py-1.5 bg-hover rounded-full border border-border">
                 <Eye className="w-4 h-4 text-tl-red" />
                 <span className="text-text-secondary text-sm">
-                  {totalViews.toLocaleString()} lansun bainak si
+                  {totalViews.toLocaleString()} ema hetan informasaun iha sistema
                 </span>
               </div>
             )}
@@ -47,7 +47,7 @@ const Footer = () => {
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Link Susuk</h3>
+            <h3 className="text-white font-semibold mb-4">Link seluk</h3>
             <ul className="space-y-2">
               <li><Link to="/map" className="text-text-secondary hover:text-tl-red text-sm">Mapa</Link></li>
               <li><Link to="/ministries" className="text-text-secondary hover:text-tl-red text-sm">Ministériu Sira</Link></li>
@@ -88,7 +88,7 @@ const Footer = () => {
         </div>
         
         <div className="border-t border-border mt-8 pt-6 text-center">
-          <p className="text-text-muted text-sm">© 2024 GIS Timor-Leste. Direitu hotu rezerva.</p>
+          <p className="text-text-muted text-sm">© 2026 GIS Timor-Leste. DevNizio.</p>
         </div>
       </div>
     </footer>
