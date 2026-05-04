@@ -79,7 +79,7 @@ function AdminLogs() {
             <thead className="bg-secondary border-b border-border">
               <tr>
                 <th className="text-left px-5 py-3 text-text-muted text-xs font-medium">Data & Hora</th>
-                <th className="text-left px-5 py-3 text-text-muted text-xs font-medium">Uza-na'in</th>
+                <th className="text-left px-5 py-3 text-text-muted text-xs font-medium">Admin</th>
                 <th className="text-left px-5 py-3 text-text-muted text-xs font-medium">Aksaun</th>
                 <th className="text-left px-5 py-3 text-text-muted text-xs font-medium">Entidade</th>
                 <th className="text-left px-5 py-3 text-text-muted text-xs font-medium">Detallu</th>
