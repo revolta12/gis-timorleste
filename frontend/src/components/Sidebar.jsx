@@ -37,7 +37,7 @@ const Sidebar = () => {
     { name: 'Kategoria', path: '/admin/categories', icon: Tag, prefetchKey: 'categories', prefetchFn: () => api.get('/categories') },
     { name: 'Notísia', path: '/admin/news', icon: Newspaper, prefetchKey: 'admin-news', prefetchFn: () => api.get('/news') },
     { name: 'Log Atividade', path: '/admin/logs', icon: FileText, prefetchKey: 'admin-logs', prefetchFn: () => api.get('/logs') },
-    { name: 'Uza-na\'in', path: '/admin/users', icon: Users, prefetchKey: 'admin-users', prefetchFn: () => api.get('/users') },
+    { name: 'Admin', path: '/admin/users', icon: Users, prefetchKey: 'admin-users', prefetchFn: () => api.get('/users') },
     { name: 'Konfigurasaun', path: '/admin/settings', icon: Settings, prefetchKey: 'settings', prefetchFn: () => api.get('/settings') }
   ];
 
