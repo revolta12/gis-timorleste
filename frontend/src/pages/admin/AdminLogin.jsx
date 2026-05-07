@@ -33,7 +33,7 @@ function AdminLogin() {
         
         <div className="bg-card rounded-xl p-8 border border-border">
           <form onSubmit={handleSubmit} className="space-y-5">
-            <div><label className="block text-text-secondary text-sm mb-2">Email</label><div className="relative"><Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-muted" /><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full pl-10 pr-4 py-2 bg-secondary border border-border rounded-lg text-white focus:outline-none focus:border-tl-red" placeholder="admin@gis.tl" required /></div></div>
+            <div><label className="block text-text-secondary text-sm mb-2">Email</label><div className="relative"><Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-muted" /><input type="email" value={email} onChange={(e) => setEmail(e.target.value)} className="w-full pl-10 pr-4 py-2 bg-secondary border border-border rounded-lg text-white focus:outline-none focus:border-tl-red" placeholder="" required /></div></div>
             <div><label className="block text-text-secondary text-sm mb-2">Password</label><div className="relative"><Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-muted" /><input type="password" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full pl-10 pr-4 py-2 bg-secondary border border-border rounded-lg text-white focus:outline-none focus:border-tl-red" placeholder="********" required /></div></div>
             <Button type="submit" variant="primary" loading={loading} fullWidth><LogIn className="w-4 h-4 mr-2" /> Login</Button>
           </form>
